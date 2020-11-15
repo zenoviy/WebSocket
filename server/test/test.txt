@@ -1,0 +1,9 @@
+DDT 
+Mocha
+chai-http
+
+
+1) login
+2) authorization autentification
+3) DB request
+4) request/response
