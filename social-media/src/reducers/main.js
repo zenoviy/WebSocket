@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import loginCheck from './login'
+import { combineReducers } from 'redux';
+import loginCheck from './initUser';
 
 export default combineReducers({
     loginCheck

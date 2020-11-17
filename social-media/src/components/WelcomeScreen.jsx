@@ -1,45 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setLogin } from '../actions/loginActions';
-import { BrowserRouter as Router,
-    Switch,
-    Route,
-    NavLink,
-    Redirect,
-    useHistory
-} from 'react-router-dom';
+import { NavLink, Redirect, } from 'react-router-dom';
 
 
 import Login from './Login';
 import Registration from './Registration';
 
-function Rediclaration(props){
-    let history = useHistory()
-    return(<Rediclaration props={props} />)
-}
+
 
 class WelcomeScreen extends React.Component {
     constructor(props){
         super(props)
-        this.changeLocation = this.changeLocation.bind(this);
-        this.loginUser = this.loginUser.bind(this);
+        this.switchToLogin = this.switchToLogin.bind(this);
+        this.switchToRegistration = this.switchToRegistration.bind(this);
+        this.state = {
+            selectAuthOption: "LOGIN"
+        }
     }
-    changeLocation(){
-        window.location.href = "/welcome/login";
+    switchToLogin(){
+        this.setState({
+            selectAuthOption: "LOGIN"
+        })
     }
-    loginUser(){
-        //console.log(1)
-        this.props.setLogin()
+    switchToRegistration(){
+        this.setState({
+            selectAuthOption: "REGISTRATION"
+        })
     }
     render(){
+        let selectAuthOption = this.state.selectAuthOption;
         return(
             <div>
                 <h1>Welcome</h1>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
                 </ul>
-                <button onClick={ this.changeLocation }>Click</button>
-                <button onClick={ this.loginUser }>Login</button>
+                
+                <button onClick={ this.switchToLogin }>To Login</button>
+                <button onClick={ this.switchToRegistration }>To Registration</button>
+                { selectAuthOption === "LOGIN" ? <Login /> : <Registration /> }
                 { this.props.loginCheck.isLogined ? <Redirect to='/' />: ""}
             </div>
         )

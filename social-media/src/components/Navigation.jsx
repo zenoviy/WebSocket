@@ -2,11 +2,10 @@ import React, { useContext, createContext, useState, useEffect } from 'react';
 import { BrowserRouter as Router,
     Switch,
     Route,
-    NavLink,
     Redirect
 } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { setLogin } from '../actions/loginActions'
+import { connect } from 'react-redux';
+import { setLogin } from '../actions/loginActions';
 
 import Home from '../components/Home';
 import Login from '../components/Login';
@@ -35,7 +34,7 @@ function useProvideAuth() {
     }
 }
 
-function useAuth() {
+/*function useAuth() {
     return useContext(authContext);
 }
 
@@ -61,7 +60,7 @@ function PrivateRoute({ children, ...rest }) {
         }
       />
     );
-}
+}*/
 
 /*
 <PrivateRoute exact path="/"  >
@@ -71,11 +70,10 @@ function PrivateRoute({ children, ...rest }) {
 
 function Navigation(props){
     const loginCheck = props.loginCheck;
-    const proviedeAut = useProvideAuth();
-    /*useEffect(() => { proviedeAut.setUser({
+    /*const proviedeAut = useProvideAuth();
+    useEffect(() => { proviedeAut.setUser({
         isLogined: loginCheck.isLogined
     })}, [])*/
-   // console.log(proviedeAut.userData, loginCheck.isLogined, "asd")
      return(
         <div>
             <ProvideAuth >
