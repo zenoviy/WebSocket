@@ -4,9 +4,10 @@ import React from 'react';
 export default class Home extends React.Component {
     render(){
         return(
-            <div>
+            <main className="social-body">
                 <h1>HomePage</h1>
-            </div>
+                <p>Chat</p>
+            </main>
         )
     }
 }

@@ -1,0 +1,4 @@
+.social-body {
+    background: rgb(255,205,103);
+    background: var(--main-gradient-color); 
+}

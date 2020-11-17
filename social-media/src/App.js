@@ -1,11 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css'
+import Navigation from './components/Navigation'
 
 function App() {
   
   return (
     <div>
-      <h1>Social</h1>
+      <Navigation />
     </div>
   );
 }
