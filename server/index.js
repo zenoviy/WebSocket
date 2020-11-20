@@ -1,6 +1,10 @@
+const config = require("./config.js");
 const express = require("express");
 const WebSocket = require('ws');
-const __PORT = 3100;
+const path = require("path");
+
+const clientWorker = require('./controllers/routes/clientWorker');
+
 
 const app = express();
 const wss = new WebSocket.Server({
@@ -8,7 +12,7 @@ const wss = new WebSocket.Server({
 })
 
 
-
+//   Websocket
 wss.brodcast = function(data, clientValidator = () => true ){
     this.clients.forEach(client => {
         if(clientValidator(client)){
@@ -22,14 +26,20 @@ wss.on("connection", ws => {
     })
 })
 
-app.get("/", (req, res) => {
-    res.send("<h1>Hello</h1>")
-})
-app.get("/blog", (req, res) => {
-    res.send("<h1>Blog</h1>")
+
+// REST API Routing
+app.use(express.static(path.join(__dirname + '/public')));
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 })
 
+app.post("/api/regiter-new-user", clientWorker.registerNewUser)
 
-app.listen(__PORT, () => {
-    console.log(`app runing at port ${__PORT}`)
+
+// Serve
+app.listen(config.__PORT, (err) => {
+    console.log(`app runing at port ${config.__PORT}`)
+    if(err) console.log(err)
 })
+
+module.exports = app;
