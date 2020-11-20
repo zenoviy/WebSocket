@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setLogin } from '../actions/loginActions';
+import { switchForm } from '../actions/switchForm';
 import { NavLink, Redirect, } from 'react-router-dom';
 
 
@@ -22,10 +23,17 @@ class WelcomeScreen extends React.Component {
         this.setState({
             selectAuthOption: "LOGIN"
         })
+        this.props.switchForm("LOGIN")
     }
     switchToRegistration(){
         this.setState({
             selectAuthOption: "REGISTRATION"
+        })
+        this.props.switchForm("REGISTRATION")
+    }
+    componentDidMount(){
+        this.setState({
+            selectAuthOption: this.props.globalState.currentInitForm
         })
     }
     render(){
@@ -48,13 +56,17 @@ class WelcomeScreen extends React.Component {
 
 
 export default connect(state => ({
-    loginCheck: state.loginCheck
+    loginCheck: state.loginCheck,
+    globalState: state.globalState
 }), dispatch => ({
         setLogin: () => {
             const loginData = () => { 
                 return setLogin(dispatch)
             }
             dispatch(loginData())
+        },
+        switchForm: (formState) => {
+            switchForm(dispatch, formState)
         }
     })
 )(WelcomeScreen)

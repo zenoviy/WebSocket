@@ -1,6 +1,6 @@
 import { checkUserLogin, unregisterUser } from '../api/serverRequests';
 
-export function setLogin(dispatch){
+export function setLogin(formObject){
     return dispatch => {
         checkUserLogin()
         .then(resolve => { 
@@ -11,7 +11,7 @@ export function setLogin(dispatch){
 }
 
 
-export function unLogin(){
+export function unLogin(formObject){
     return dispatch => {
         unregisterUser()
         .then(resolve => { 

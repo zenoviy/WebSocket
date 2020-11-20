@@ -1,13 +1,11 @@
 import { registrationNewUser } from '../api/serverRequests';
+import { formActions } from '../constants/actionsName';
 
-export function setLogin(dispatch){
+export function setRegistration(formObject){
     return dispatch => {
-        registrationNewUser()
+        registrationNewUser(formObject)
         .then(resolve => { 
-            dispatch({ type: 'LOGINED', payload: resolve })
-            console.log(resolve)
-            //window.location.href = "/"
-
+            dispatch({ type: formActions['LOGIN'], payload: resolve })
         })
     }
 }

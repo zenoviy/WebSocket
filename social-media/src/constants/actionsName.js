@@ -1,0 +1,6 @@
+export const formActions = {
+    SWITCH_FORM: 'SWITCH_FORM',
+    LOGIN: 'LOGINED',
+    REGISTRATION: 'REGISTRATION',
+    UNLOGIN: 'UNLOGINED',
+}

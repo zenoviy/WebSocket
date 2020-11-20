@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import { BrowserRouter as Router,
     Switch,
     Route,
@@ -34,49 +34,12 @@ function useProvideAuth() {
     }
 }
 
-/*function useAuth() {
-    return useContext(authContext);
-}
-
-
-
-function PrivateRoute({ children, ...rest }) {
-    
-    const proviedeAut = useProvideAuth();
-    console.log(proviedeAut.userData.isLogined)
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-        proviedeAut.userData.isLogined ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/welcome"
-              }}
-            />
-          )
-        }
-      />
-    );
-}*/
-
-/*
-<PrivateRoute exact path="/"  >
-                            <Home />
-                        </PrivateRoute>
-*/
-
 function Navigation(props){
     const loginCheck = props.loginCheck;
-    /*const proviedeAut = useProvideAuth();
-    useEffect(() => { proviedeAut.setUser({
-        isLogined: loginCheck.isLogined
-    })}, [])*/
+    console.log(loginCheck)
      return(
         <div>
-            <ProvideAuth >
+            
                 <Router>
                     <Switch>
                         <Route exact path="/"  >
@@ -90,11 +53,14 @@ function Navigation(props){
                             <Login />
                         </Route>
                         <Route exact path="/welcome/registration">
-                            <Registration />
+                            <WelcomeScreen />
                         </Route>
+                        <Router path="*">
+                            <Redirect to="/welcome" />
+                        </Router>
                     </Switch>
                 </Router>
-            </ProvideAuth>
+
         </div>
     )
 }
